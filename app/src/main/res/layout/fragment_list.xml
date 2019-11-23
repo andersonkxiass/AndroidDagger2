@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.tools.features.movies.MovieViewModel" />
+        <variable
+            name="adapter"
+            type="com.example.tools.features.movies.list.MovieAdapter"/>
+
+        <variable
+            name="layoutManager"
+            type="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        <variable
+            name="dividerItemDecoration"
+            type="androidx.recyclerview.widget.DividerItemDecoration"/>
+    </data>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".features.movies.list.ListFragment">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/movie_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:adapter="@{adapter}"
+            app:layoutManager="@{layoutManager}"
+            app:dividerItemDecoration="@{dividerItemDecoration}"
+            app:updateAdapter="@{viewModel.data}"
+            tools:listitem="@layout/movie_item" />
+    </FrameLayout>
+</layout>
