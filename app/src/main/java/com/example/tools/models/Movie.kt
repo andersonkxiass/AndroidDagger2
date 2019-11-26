@@ -19,5 +19,5 @@ data class Movie(
 //    @JsonProperty("title")
     var title: String? = null,
 //    @JsonProperty("year")
-    var year: Int? = null
+    var year: Int? = 0
 ) : Parcelable

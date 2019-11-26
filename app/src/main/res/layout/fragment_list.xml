@@ -7,32 +7,43 @@
         <variable
             name="viewModel"
             type="com.example.tools.features.movies.MovieViewModel" />
+
         <variable
             name="adapter"
-            type="com.example.tools.features.movies.list.MovieAdapter"/>
+            type="com.example.tools.features.movies.list.MovieAdapter" />
 
         <variable
             name="layoutManager"
-            type="androidx.recyclerview.widget.LinearLayoutManager"/>
+            type="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <variable
             name="dividerItemDecoration"
-            type="androidx.recyclerview.widget.DividerItemDecoration"/>
+            type="androidx.recyclerview.widget.DividerItemDecoration" />
     </data>
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".features.movies.list.ListFragment">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/movie_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@+id/novo"
             app:adapter="@{adapter}"
-            app:layoutManager="@{layoutManager}"
             app:dividerItemDecoration="@{dividerItemDecoration}"
+            app:layoutManager="@{layoutManager}"
             app:updateAdapter="@{viewModel.data}"
             tools:listitem="@layout/movie_item" />
-    </FrameLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/novo"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:onClick="@{viewModel::novo}"
+            android:layout_alignParentBottom="true"
+            android:text="Novo" />
+    </RelativeLayout>
 </layout>

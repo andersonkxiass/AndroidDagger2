@@ -21,4 +21,8 @@ class MovieRepository @Inject constructor (private val apiService: ApiService){
     fun deleteMovie(movieId: String): Completable {
         return apiService.delete(movieId)
     }
+
+    fun createMovie(movie : Movie): Single<String> {
+        return apiService.post(movie)
+    }
 }

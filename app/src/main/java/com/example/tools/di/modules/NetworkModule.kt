@@ -12,7 +12,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory
 class NetworkModule {
 
     companion object {
-        private const val BASE_URL = ""
+        private const val BASE_URL = "https://movies-468e0.firebaseio.com/"
     }
 
     @Provides
