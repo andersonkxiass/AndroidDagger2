@@ -16,8 +16,7 @@ import javax.inject.Singleton
 
 
 @Singleton
-class MovieViewModel @Inject constructor(private val movieRepository: MovieRepository) :
-    ViewModel() {
+class MovieViewModel @Inject constructor(private val movieRepository: MovieRepository) : ViewModel() {
 
     private lateinit var createDisposable: Disposable
     private lateinit var disposable: Disposable
@@ -37,18 +36,6 @@ class MovieViewModel @Inject constructor(private val movieRepository: MovieRepos
         disposable = movieRepository.getMovies()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .flatMapIterable { moviesMap ->
-                moviesMap.entries.map { mapMovie ->
-                    Movie(
-                        mapMovie.key,
-                        mapMovie.value.rating,
-                        mapMovie.value.synopsis,
-                        mapMovie.value.title,
-                        mapMovie.value.year
-                    )
-                }
-            }
-            .toList()
             .subscribe({ response ->
                 data.postValue(response)
             }, { error ->
@@ -84,7 +71,7 @@ class MovieViewModel @Inject constructor(private val movieRepository: MovieRepos
         val movie = movieEditing.value
 
         movie?.let {
-            movieRepository.updateMovie(it.movieId!!, it)
+            movieRepository.updateMovie(it.movieId, it)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally {

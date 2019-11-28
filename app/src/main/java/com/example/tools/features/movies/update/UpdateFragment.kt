@@ -14,7 +14,6 @@ import com.example.tools.MyApplication
 import com.example.tools.R
 import com.example.tools.databinding.FragmentUpdateBinding
 import com.example.tools.di.ViewModelFactory
-import com.example.tools.features.movies.MovieLocalViewModel
 import com.example.tools.features.movies.MovieViewModel
 import javax.inject.Inject
 
@@ -25,9 +24,7 @@ class UpdateFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-//    private val viewModel: MovieViewModel by navGraphViewModels(R.id.movies_graph) { viewModelFactory }
-
-    private val viewModel: MovieLocalViewModel by navGraphViewModels(R.id.movies_graph) { viewModelFactory }
+    private val viewModel: MovieViewModel by navGraphViewModels(R.id.movies_graph) { viewModelFactory }
 
     private val args: UpdateFragmentArgs by navArgs()
 
