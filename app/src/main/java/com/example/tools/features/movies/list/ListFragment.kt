@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.navGraphViewModels
@@ -16,7 +15,6 @@ import com.example.tools.MyApplication
 import com.example.tools.R
 import com.example.tools.databinding.FragmentListBinding
 import com.example.tools.di.ViewModelFactory
-import com.example.tools.features.movies.MovieLocalViewModel
 import com.example.tools.features.movies.MovieViewModel
 import kotlinx.android.synthetic.main.fragment_list.*
 import javax.inject.Inject
@@ -30,9 +28,7 @@ class ListFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-//    private val viewModel: MovieViewModel by navGraphViewModels(R.id.movies_graph) { viewModelFactory }
-
-    private val viewModel: MovieLocalViewModel by navGraphViewModels(R.id.movies_graph) { viewModelFactory }
+    private val viewModel: MovieViewModel by navGraphViewModels(R.id.movies_graph) { viewModelFactory }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

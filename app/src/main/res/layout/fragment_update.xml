@@ -4,13 +4,13 @@
 
     <data>
 
-<!--        <variable-->
-<!--            name="viewModel"-->
-<!--            type="com.example.tools.features.movies.MovieViewModel" />-->
-
         <variable
             name="viewModel"
-            type="com.example.tools.features.movies.MovieLocalViewModel" />
+            type="com.example.tools.features.movies.MovieViewModel" />
+
+<!--        <variable-->
+<!--            name="viewModel"-->
+<!--            type="com.example.tools.features.movies.MovieLocalViewModel" />-->
 
     </data>
 

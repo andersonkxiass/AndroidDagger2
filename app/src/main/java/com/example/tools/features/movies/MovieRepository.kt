@@ -10,12 +10,11 @@ import javax.inject.Inject
 
 
 class MovieRepository @Inject constructor(
-    private val apiService: ApiService,
-    private val appDatabase: AppDatabase
+    private val apiService: ApiService, private val appDatabase: AppDatabase
 ) {
 
-    fun getMovies(): Observable<Map<String, Movie>> {
-        return apiService.get()
+    fun getMovies(): Observable<MutableList<Movie>> {
+        return Observable.concatArray(getMoviesFromDB(), getMoviesFromAPI())
     }
 
     fun updateMovie(movieId: String, movie: Movie): Single<Movie> {
@@ -30,4 +29,30 @@ class MovieRepository @Inject constructor(
         return apiService.post(movie)
     }
 
+    private fun getMoviesFromAPI(): Observable<MutableList<Movie>> {
+        return apiService.get()
+            .flatMapIterable { moviesMap ->
+                moviesMap.entries.map { mapMovie ->
+                    Movie(
+                        mapMovie.key,
+                        mapMovie.value.rating,
+                        mapMovie.value.synopsis,
+                        mapMovie.value.title,
+                        mapMovie.value.year
+                    )
+                }
+            }
+            .toList()
+            .doAfterSuccess {
+                appDatabase.movieDAO().insertAllMovies(it)
+            }
+            .toObservable()
+
+    }
+
+    private fun getMoviesFromDB(): Observable<MutableList<Movie>> {
+        return Observable.fromCallable {
+            appDatabase.movieDAO().getAllMovie()
+        }
+    }
 }
