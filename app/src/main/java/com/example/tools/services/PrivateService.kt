@@ -6,7 +6,7 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.http.*
 
-interface ApiService {
+interface PrivateService {
 
     @GET("/movies.json")
     fun get(): Observable<Map<String, Movie>>

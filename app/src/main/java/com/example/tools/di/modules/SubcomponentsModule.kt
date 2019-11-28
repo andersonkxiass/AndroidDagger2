@@ -1,7 +1,7 @@
 package com.example.tools.di.modules
 
-import com.example.tools.di.components.LoginComponent
+import com.example.tools.di.components.MovieComponent
 import dagger.Module
 
-@Module(subcomponents = [LoginComponent::class])
+@Module(subcomponents = [MovieComponent::class])
 class SubcomponentsModule {}

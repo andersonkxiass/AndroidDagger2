@@ -1,32 +1,29 @@
 package com.example.tools.di.modules
 
-import com.example.tools.features.login.LoginRepository
 import com.example.tools.services.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.jackson.JacksonConverterFactory
 
 @Module
-object NetworkModule {
+class NetworkModule {
 
-    @Provides
-    @Reusable
-    @JvmStatic
-    fun provideApiRetrofitService(): ApiService {
-
-        return Retrofit.Builder()
-            .baseUrl("https://example.com")
-            .addConverterFactory(JacksonConverterFactory.create())
-            .build()
-            .create(ApiService::class.java)
+    companion object {
+        private const val BASE_URL = "https://movies-468e0.firebaseio.com/"
     }
 
     @Provides
     @Reusable
-    @JvmStatic
-    fun provideLoginRepository(apiService: ApiService): LoginRepository {
-        return LoginRepository(apiService)
+    fun provideApiRetrofitService(): ApiService {
+
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(JacksonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
+            .create(ApiService::class.java)
     }
 }
