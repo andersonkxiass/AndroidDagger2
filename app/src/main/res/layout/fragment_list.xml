@@ -4,9 +4,13 @@
 
     <data>
 
+<!--        <variable-->
+<!--            name="viewModel"-->
+<!--            type="com.example.tools.features.movies.MovieViewModel" />-->
+
         <variable
             name="viewModel"
-            type="com.example.tools.features.movies.MovieViewModel" />
+            type="com.example.tools.features.movies.MovieLocalViewModel" />
 
         <variable
             name="adapter"
@@ -27,14 +31,24 @@
         android:layout_height="match_parent"
         tools:context=".features.movies.list.ListFragment">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/colorPrimary"
+            app:titleTextColor="@android:color/white"
+            app:title="Movies"
+            app:menu="@menu/main"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/movie_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/novo"
+            android:layout_below="@+id/toolbar"
             app:adapter="@{adapter}"
-            app:dividerItemDecoration="@{dividerItemDecoration}"
             app:layoutManager="@{layoutManager}"
+            app:dividerItemDecoration="@{dividerItemDecoration}"
             app:updateAdapter="@{viewModel.data}"
             tools:listitem="@layout/movie_item" />
 
@@ -42,8 +56,8 @@
             android:id="@+id/novo"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:onClick="@{viewModel::novo}"
             android:layout_alignParentBottom="true"
+            android:onClick="@{viewModel::novo}"
             android:text="Novo" />
     </RelativeLayout>
 </layout>

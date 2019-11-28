@@ -11,6 +11,7 @@ import androidx.navigation.navGraphViewModels
 import com.example.tools.MyApplication
 import com.example.tools.R
 import com.example.tools.di.ViewModelFactory
+import com.example.tools.features.movies.MovieLocalViewModel
 import com.example.tools.features.movies.MovieViewModel
 import javax.inject.Inject
 
@@ -19,7 +20,8 @@ class DeleteFragment : DialogFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val viewModel: MovieViewModel by navGraphViewModels(R.id.movies_graph) { viewModelFactory }
+//    private val viewModel: MovieViewModel by navGraphViewModels(R.id.movies_graph) { viewModelFactory }
+    private val viewModel: MovieLocalViewModel by navGraphViewModels(R.id.movies_graph) { viewModelFactory }
 
     private val args : DeleteFragmentArgs by navArgs()
 
@@ -27,7 +29,7 @@ class DeleteFragment : DialogFragment() {
 
         (context.applicationContext as MyApplication).appComponent
             .movieComponent()
-            .create()
+            .create(context.applicationContext)
             .inject(this)
 
         super.onAttach(context)

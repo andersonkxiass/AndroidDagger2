@@ -12,12 +12,8 @@ data class Movie(
 
     @JsonIgnore
     var movieId: String? = null,
-//    @JsonProperty("rating")
-    var rating: Float? = null,
-//    @JsonProperty("synopsis")
-    var synopsis: String? = null,
-//    @JsonProperty("title")
-    var title: String? = null,
-//    @JsonProperty("year")
-    var year: Int? = 0
-) : Parcelable
+    override var rating: Float? = null,
+    override var synopsis: String? = null,
+    override var title: String? = null,
+    override var year: Int? = null
+) : Parcelable, BaseModel

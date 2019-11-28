@@ -2,6 +2,7 @@ package com.example.tools.di.modules
 
 import androidx.lifecycle.ViewModel
 import com.example.tools.di.ViewModelKey
+import com.example.tools.features.movies.MovieLocalViewModel
 import com.example.tools.features.movies.MovieViewModel
 import dagger.Binds
 import dagger.Module
@@ -13,4 +14,9 @@ internal abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MovieViewModel::class)
     abstract fun bindMovieViewModel(viewModel: MovieViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MovieLocalViewModel::class)
+    abstract fun bindMovieLocalViewModel(viewModel: MovieLocalViewModel): ViewModel
 }

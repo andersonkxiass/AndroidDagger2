@@ -38,7 +38,7 @@
         tools:layout="@layout/fragment_update">
         <argument
             android:name="movie"
-            app:argType="com.example.tools.models.Movie"/>
+            app:argType="com.example.tools.models.database.MovieDB"/>
     </fragment>
 
     <dialog

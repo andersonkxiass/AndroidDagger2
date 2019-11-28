@@ -7,13 +7,14 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tools.R
 import com.example.tools.models.Movie
+import com.example.tools.models.database.MovieDB
 import kotlinx.android.synthetic.main.movie_item.view.*
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
-    val movies : MutableList<Movie> = mutableListOf()
+    val movies : MutableList<MovieDB> = mutableListOf()
 
-    fun setData( movies : MutableList<Movie>){
+    fun setData( movies : MutableList<MovieDB>){
         this.movies.clear()
         this.movies.addAll( movies)
         notifyDataSetChanged()
@@ -45,7 +46,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     inner class MovieViewHolder(private  val view : View) : RecyclerView.ViewHolder(view){
 
-        fun setData(movie: Movie) {
+        fun setData(movie: MovieDB) {
             view.movie_title.text = movie.title
         }
     }

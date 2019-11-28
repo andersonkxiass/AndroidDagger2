@@ -15,6 +15,7 @@ import com.example.tools.MyApplication
 import com.example.tools.R
 import com.example.tools.databinding.FragmentCreateBinding
 import com.example.tools.di.ViewModelFactory
+import com.example.tools.features.movies.MovieLocalViewModel
 import com.example.tools.features.movies.MovieViewModel
 import com.example.tools.features.movies.update.UpdateFragmentArgs
 import javax.inject.Inject
@@ -26,13 +27,14 @@ class CreateFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val viewModel: MovieViewModel by navGraphViewModels(R.id.movies_graph) { viewModelFactory }
+//    private val viewModel: MovieViewModel by navGraphViewModels(R.id.movies_graph) { viewModelFactory }
+    private val viewModel: MovieLocalViewModel by navGraphViewModels(R.id.movies_graph) { viewModelFactory }
 
     override fun onAttach(context: Context) {
 
         (context.applicationContext as MyApplication).appComponent
             .movieComponent()
-            .create()
+            .create(context.applicationContext)
             .inject(this)
 
         super.onAttach(context)
